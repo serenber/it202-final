@@ -1,0 +1,14 @@
+{
+  "name": "IT202 Final",
+  "short_name": "IT202 Final",
+  "icons": [ {
+        "src": "./favicon.png",
+        "type": "image/png",
+        "sizes": "513x513"
+      }],
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fec810",
+  "theme_color": "#fec810"
+}

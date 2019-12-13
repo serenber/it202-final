@@ -2,7 +2,14 @@
 
 
 <!-- add a select control to let users choose a school category;  you can hard-code the options or dynamically populate them from the primaryCategories variable below-->
-
+<br>
+    <input type="radio" value="ES" name="category">
+    Elementary School
+    <input type="radio" value="HS" name="category">
+    High School
+   <input type="radio" value="MS" name="category">
+    Middle School
+   <br>
 
 <button id="searchSchools" class="mdc-button mdc-button--raised">
   <div class="mdc-button__ripple"></div>
@@ -48,7 +55,17 @@
 
 
   let getSchools = () => {
-    let url = endpoint + "$limit=" + limit;
+      
+      var category = $("input[name='category']:checked"). val();
+    console.log(category);
+    
+    let url = "";
+    if (category == "") {
+        url = endpoint + "$limit=" + limit;
+    }
+      else{
+          url = "$query=SELECT * WHERE primary_category= '" + category + "'" + "LIMIT " + limit;
+      }
 
     let divider = $("ul#listSchools .mdc-list-divider.template");
 
