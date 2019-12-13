@@ -14,7 +14,7 @@
     <style>
       body {margin: 0;}
       :root {
-        --mdc-theme-primary: #001E62;
+        --mdc-theme-primary: #fec810;
       }
       .template {display:none;}
       .mdc-dialog__container {margin:5px;}
@@ -52,19 +52,16 @@
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
       <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-      <span class="mdc-top-app-bar__title">Your UIN Here </span>
+      <span class="mdc-top-app-bar__title"> 664097032 </span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
     </section>
   </div>
 </header>
 
-<div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust" id="content">
-       
+<div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust" id="content"></div>
 <div id="map"></div>
-
-
-</div>
+      
 <div id="modalTransaction"
     class="mdc-dialog"
      role="alertdialog"
@@ -227,12 +224,25 @@
 
   <script>
       var map;
+      var la = -34.397;
+      var ln =  150.644;
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
+          var x = document.getElementById("map");
+          if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+    function(position){
+        console.log("Latitude: " + position.coords.latitude +
+  " Longitude: " + position.coords.longitude);
+    la = position.coords.latitude;
+    ln = position.coords.longitude;
+    });
+  }
+        map = new google.maps.Map(x, {
+          center: {lat: la, lng: ln},
           zoom: 8
         });
       }
+      
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCIK4Z-9uO_KmcNAexRKsIpCZrgI-I5aA&callback=initMap"
     async defer></script>

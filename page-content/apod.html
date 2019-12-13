@@ -1,0 +1,58 @@
+<div id="apodContent">
+
+</div>
+
+
+
+
+<script>
+  let url = "https://api.nasa.gov/planetary/apod?api_key=nxtMjihbq1ZPBiPcUKOym6IlVMvD4bEeNvJTbS1l";
+ var rep;
+  $.get(url, (response) => {
+      rep = response;
+    console.log(response);
+      
+      var d1 = $('<div class="mdc-card my-card">');
+            var d2 = $('<div class="mdc-card__primary-action my-card__primary-action" tabindex="0">');
+            var d3 = $('<div class="mdc-card__media mdc-card__media--16-9 my-card__media" style="background-image: url(&quot;' + response.url + '&quot;);">');
+            d2.append(d3);
+            var d4 = $('<div class="my-card__primary">');
+            var h2 = $('<h2 class="my-card__title mdc-typography mdc-typography--headline6"></h2>');
+            h2.text("Title: " + response.title + " Copyright: " + response.copyright)
+            var h3 = $('<h3 class="my-card__subtitle mdc-typography mdc-typography--subtitle2"></h3>');
+            h3.text(response.date);
+            d4.append(h2);
+            d4.append(h3);
+            d2.append(d4);
+            var d5 = $('<div class="my-card__secondary mdc-typography mdc-typography--body2"></div>');
+            d5.text(response.explanation);
+            d2.append(d5);
+            d1.append(d2);
+var d6 = $('<div class="mdc-card__actions">')
+var d7 = $('<div class="mdc-card__action-buttons">')
+var button1 = $('<button class="mdc-button mdc-card__action mdc-card__action--button" onclick = openHD()>  <span class="mdc-button__ripple"></span> View HD Image</button>')
+var button2 = $('<button class="mdc-button mdc-card__action mdc-card__action--button">  <span class="mdc-button__ripple"></span> Bookmark</button>')
+d7.append(button1)
+d7.append(button2)
+d6.append(d7);
+var d8 = $('<div class="mdc-card__action-icons">')
+var button3 = $('<button class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-pressed="false" aria-label="Add to favorites" title="Add to favorites">')
+var ele1 = $('<i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>')
+var ele2 = $('<i class="material-icons mdc-icon-button__icon">favorite_border</i>')
+button3.append(ele1)
+button3.append(ele2)
+var button4 = $('<button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="Share" data-mdc-ripple-is-unbounded="true">share</button>')
+var button5 = $('<button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="More options" data-mdc-ripple-is-unbounded="true">more_vert</button>')
+d8.append(button3)
+d8.append(button4)
+d8.append(button5)
+d6.append(d8);
+      d1.append(d6)
+            $("#apodContent").append(d1);
+  })
+    
+    function openHD(){
+    window.open(rep.hdurl, "_blank")
+}
+
+</script>
